@@ -88,6 +88,7 @@ GraphStorageClient::addVertices(GraphSpaceID space,
                                 std::vector<cpp2::NewVertex> vertices,
                                 std::unordered_map<TagID, std::vector<std::string>> propNames,
                                 bool ifNotExists,
+                                bool ignoreExistedIndex,
                                 folly::EventBase* evb) {
     auto cbStatus = getIdFromNewVertex(space);
     if (!cbStatus.ok()) {
@@ -108,6 +109,7 @@ GraphStorageClient::addVertices(GraphSpaceID space,
         auto& req = requests[host];
         req.set_space_id(space);
         req.set_if_not_exists(ifNotExists);
+        req.set_ignore_existed_index(ignoreExistedIndex);
         req.set_parts(std::move(c.second));
         req.set_prop_names(propNames);
     }
@@ -128,6 +130,7 @@ GraphStorageClient::addEdges(GraphSpaceID space,
                              std::vector<cpp2::NewEdge> edges,
                              std::vector<std::string> propNames,
                              bool ifNotExists,
+                             bool ignoreExistedIndex,
                              folly::EventBase* evb,
                              bool useToss) {
     auto cbStatus = getIdFromNewEdge(space);
@@ -149,6 +152,7 @@ GraphStorageClient::addEdges(GraphSpaceID space,
         auto& req = requests[host];
         req.set_space_id(space);
         req.set_if_not_exists(ifNotExists);
+        req.set_ignore_existed_index(ignoreExistedIndex);
         req.set_parts(std::move(c.second));
         req.set_prop_names(propNames);
     }

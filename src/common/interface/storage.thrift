@@ -409,6 +409,8 @@ struct AddVerticesRequest {
         (cpp.template = "std::unordered_map")   prop_names,
     // if ture, when (vertexID,tagID) already exists, do nothing
     4: bool                                     if_not_exists,
+    // If true, existed index won't be removed
+    5: bool                                     ignore_existed_index = false,
 }
 
 struct AddEdgesRequest {
@@ -421,6 +423,8 @@ struct AddEdgesRequest {
     3: list<binary>                             prop_names,
     // if ture, when edge already exists, do nothing
     4: bool                                     if_not_exists,
+    // If true, existed index won't be removed
+    5: bool                                     ignore_existed_index = false,
 }
 
 /*
