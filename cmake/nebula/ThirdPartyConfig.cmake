@@ -148,6 +148,7 @@ if (NOT ENABLE_JEMALLOC OR ENABLE_ASAN OR ENABLE_UBSAN)
     set(JEMALLOC_LIB )
 else()
     set(JEMALLOC_LIB jemalloc)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DJEMALLOC_ENABLED")
 endif()
 
 message(">>>> Configuring third party for '${PROJECT_NAME}' done <<<<")

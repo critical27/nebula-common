@@ -58,3 +58,15 @@ nebula_add_executable(
     LIBRARIES
         follybenchmark boost_regex
 )
+
+nebula_add_test(
+    NAME
+        mem_tracker_test
+    SOURCES
+        MemTrackerTest.cpp
+    OBJECTS
+        $<TARGET_OBJECTS:base_obj>
+        $<TARGET_OBJECTS:time_obj>
+    LIBRARIES
+        gtest
+)
